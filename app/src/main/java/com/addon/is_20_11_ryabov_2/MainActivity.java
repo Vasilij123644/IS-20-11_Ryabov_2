@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                imageView.setBackgroundResource(R.drawable.menicon);
+                imageView.setBackgroundResource(R.drawable.ment);
                 pol = 1;
             }
         });
@@ -100,14 +100,12 @@ public class MainActivity extends AppCompatActivity {
                         bmr = (9.99 * Double.parseDouble(ves)) + (6.25 * Double.parseDouble(rost)) - (4.92 * Double.parseDouble(vozrast)) - 161;
                         bmr = bmr * koef;
                         saveText();
-                        openText();
                     }
                     else
                     {
                         bmr = (9.99 * Double.parseDouble(ves)) + (6.25 * Double.parseDouble(rost)) - (4.92 * Double.parseDouble(vozrast)) + 5;
                         bmr = bmr * koef;
                         saveText();
-                        openText();
                     }
                 }
             }
@@ -128,25 +126,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Файл сохранен", Toast.LENGTH_SHORT).show();
         }
         catch(IOException ex) {
-            Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    // открытие файла
-    public void openText(){
-
-        TextView textView = findViewById(R.id.textView6);
-        File file = getExternalPath();
-        // если файл не существует, выход из метода
-        if(!file.exists()) return;
-        try(FileInputStream fin =  new FileInputStream(file)) {
-            byte[] bytes = new byte[fin.available()];
-            fin.read(bytes);
-            String text = new String (bytes);
-            textView.setText(text);
-        }
-        catch(IOException ex) {
-
             Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
         }
     }
